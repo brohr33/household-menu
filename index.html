@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Household Menu HQ</title>
+    <style>
+      :root {
+        --bg: #0f0b09;
+        --bg-soft: #171210;
+        --panel: rgba(25, 20, 16, 0.88);
+        --panel-soft: rgba(38, 30, 24, 0.82);
+        --line: rgba(255, 242, 225, 0.1);
+        --ink: #f8f1e8;
+        --muted: #c9b7a2;
+        --gold: #d6a25a;
+        --sage: #88a17d;
+        --rose: #b97263;
+        --violet: #8577b8;
+        --shadow: 0 28px 70px rgba(0, 0, 0, 0.4);
+        --radius-xl: 32px;
+        --radius-lg: 24px;
+        --radius-md: 18px;
+        --max: 1360px;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(185, 114, 99, 0.16), transparent 24%),
+          radial-gradient(circle at top right, rgba(136, 161, 125, 0.12), transparent 20%),
+          linear-gradient(180deg, #17110d 0%, #0c0907 100%);
+        line-height: 1.5;
+      }
+
+      a { color: inherit; }
+
+      .shell {
+        width: min(var(--max), calc(100% - 28px));
+        margin: 0 auto;
+        padding: 22px 0 56px;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 620px;
+        display: grid;
+        align-items: end;
+        overflow: hidden;
+        border-radius: 40px;
+        background:
+          linear-gradient(180deg, rgba(10, 8, 7, 0.12), rgba(10, 8, 7, 0.92)),
+          url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=80") center/cover;
+        border: 1px solid rgba(255, 244, 228, 0.08);
+        box-shadow: var(--shadow);
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(10, 8, 7, 0.9) 0%, rgba(10, 8, 7, 0.52) 42%, rgba(10, 8, 7, 0.25) 65%, rgba(10, 8, 7, 0.7) 100%),
+          linear-gradient(180deg, rgba(10, 8, 7, 0.06), rgba(10, 8, 7, 0.18));
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+        gap: 24px;
+        padding: 36px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 15px;
+        border-radius: 999px;
+        width: fit-content;
+        background: rgba(255, 244, 228, 0.08);
+        border: 1px solid rgba(255, 244, 228, 0.12);
+        color: #f4dbc1;
+        font-size: 0.79rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        letter-spacing: -0.04em;
+      }
+
+      h1 {
+        margin-top: 16px;
+        font-size: clamp(3.1rem, 7vw, 6.5rem);
+        line-height: 0.92;
+        max-width: 8ch;
+      }
+
+      .lede {
+        margin: 16px 0 0;
+        max-width: 56ch;
+        font-size: 1.08rem;
+        color: #efdfcf;
+      }
+
+      .hero-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .pill {
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255, 244, 228, 0.1);
+        border: 1px solid rgba(255, 244, 228, 0.12);
+        color: #f8eee2;
+        font-weight: 600;
+      }
+
+      .hero-side {
+        display: grid;
+        align-self: end;
+      }
+
+      .tonight-card {
+        padding: 24px;
+        border-radius: 28px;
+        background: rgba(20, 16, 13, 0.72);
+        backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 244, 228, 0.12);
+        box-shadow: var(--shadow);
+      }
+
+      .kicker {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .tonight-card p {
+        color: #e8d7c4;
+        margin: 12px 0 16px;
+      }
+
+      .tonight-meta {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      .tonight-meta div {
+        padding: 12px 13px;
+        border-radius: 16px;
+        background: rgba(255, 248, 240, 0.06);
+        border: 1px solid rgba(255, 248, 240, 0.08);
+      }
+
+      .tonight-meta strong {
+        display: block;
+        font-size: 0.74rem;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: #f6eadc;
+        margin-bottom: 4px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .button,
+      .button-secondary {
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 46px;
+        padding: 0 16px;
+        border-radius: 999px;
+        font-weight: 700;
+      }
+
+      .button {
+        background: linear-gradient(135deg, #f1c486, #d6a25a);
+        color: #2a1d12;
+      }
+
+      .button-secondary {
+        background: rgba(255, 248, 240, 0.08);
+        border: 1px solid rgba(255, 248, 240, 0.12);
+        color: #fff1e1;
+      }
+
+      .overview {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .overview-card,
+      .section,
+      .mini-card,
+      .day-row {
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .overview-card {
+        padding: 20px;
+        border-radius: 24px;
+        background: linear-gradient(180deg, rgba(32, 25, 20, 0.92), rgba(22, 17, 14, 0.96));
+      }
+
+      .overview-card span {
+        display: block;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.76rem;
+        margin-bottom: 8px;
+      }
+
+      .overview-card strong {
+        font-size: 1.22rem;
+      }
+
+      .content-grid {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.85fr);
+        gap: 22px;
+      }
+
+      .section {
+        background: linear-gradient(180deg, rgba(27, 21, 17, 0.93), rgba(18, 14, 11, 0.98));
+        border-radius: var(--radius-xl);
+      }
+
+      .section-inner {
+        padding: 26px;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: end;
+        margin-bottom: 18px;
+      }
+
+      .section-head p {
+        margin: 6px 0 0;
+        color: var(--muted);
+      }
+
+      .featured {
+        position: relative;
+        min-height: 420px;
+        overflow: hidden;
+        border-radius: 30px;
+        background:
+          linear-gradient(180deg, rgba(9, 7, 6, 0.14), rgba(9, 7, 6, 0.88)),
+          url("https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1400&q=80") center/cover;
+        border: 1px solid rgba(255, 244, 228, 0.12);
+      }
+
+      .featured-content {
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        gap: 14px;
+        padding: 24px;
+      }
+
+      .tag-row,
+      .day-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag,
+      .day-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 11px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        border: 1px solid rgba(255,255,255,0.08);
+        backdrop-filter: blur(8px);
+      }
+
+      .tag.market,
+      .day-badge.market { background: rgba(214, 162, 90, 0.18); color: #f0cd93; }
+      .tag.ready,
+      .day-badge.ready { background: rgba(136, 161, 125, 0.18); color: #d8e7cf; }
+      .tag.use-soon,
+      .day-badge.use-soon { background: rgba(185, 114, 99, 0.18); color: #f0c6bc; }
+      .tag.leftovers,
+      .day-badge.leftovers { background: rgba(133, 119, 184, 0.18); color: #e0dbff; }
+
+      .featured h3 {
+        font-size: clamp(2rem, 4vw, 3.3rem);
+        line-height: 0.95;
+        max-width: 10ch;
+      }
+
+      .featured p {
+        margin: 0;
+        color: #eadccc;
+        max-width: 48ch;
+      }
+
+      .featured-meta {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .featured-meta div,
+      .day-meta div {
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(255, 248, 240, 0.08);
+        border: 1px solid rgba(255, 248, 240, 0.1);
+      }
+
+      .featured-meta strong,
+      .day-meta strong {
+        display: block;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: #f8eee1;
+        margin-bottom: 4px;
+      }
+
+      .subgrid {
+        margin-top: 18px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .day-row {
+        display: grid;
+        grid-template-columns: 180px minmax(0, 1fr) auto;
+        gap: 16px;
+        align-items: center;
+        padding: 18px;
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(36, 28, 23, 0.88), rgba(26, 20, 16, 0.94));
+      }
+
+      .day-label {
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
+      .day-row h4 {
+        font-size: 1.35rem;
+        margin-bottom: 6px;
+      }
+
+      .day-row p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .day-meta {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 12px;
+        color: #e4d4c3;
+        font-size: 0.88rem;
+      }
+
+      .tiny-link {
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 42px;
+        padding: 0 14px;
+        border-radius: 999px;
+        background: rgba(255, 248, 240, 0.08);
+        border: 1px solid rgba(255, 248, 240, 0.12);
+        color: #fff2e1;
+        font-weight: 700;
+      }
+
+      .sidebar {
+        display: grid;
+        gap: 18px;
+      }
+
+      .mini-card {
+        padding: 22px;
+        border-radius: 24px;
+        background: linear-gradient(180deg, rgba(32, 25, 20, 0.92), rgba(20, 16, 13, 0.98));
+      }
+
+      .mini-card p {
+        margin: 8px 0 0;
+        color: var(--muted);
+      }
+
+      .list {
+        list-style: none;
+        padding: 0;
+        margin: 16px 0 0;
+        display: grid;
+        gap: 12px;
+      }
+
+      .list li {
+        padding: 14px 15px;
+        border-radius: 16px;
+        background: rgba(255, 248, 240, 0.04);
+        border: 1px solid var(--line);
+      }
+
+      .list strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .list span {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .footer-note {
+        margin-top: 20px;
+        text-align: center;
+        color: #a89580;
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 1180px) {
+        .hero-inner,
+        .content-grid,
+        .overview,
+        .featured-meta,
+        .day-meta {
+          grid-template-columns: 1fr;
+        }
+
+        .day-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .shell { width: min(100% - 18px, 100%); padding: 12px 0 34px; }
+        .hero { min-height: 520px; border-radius: 28px; }
+        .hero-inner,
+        .section-inner,
+        .mini-card,
+        .tonight-card { padding: 20px; }
+        h1 { max-width: 10ch; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-inner">
+          <div>
+            <div class="eyebrow">👨‍🍳 Carl Claw, front of house for dinner</div>
+            <h1 id="page-title">The week, plated a little better</h1>
+            <p class="lede">
+              A family-facing weekly menu with a calmer hierarchy, a more elevated visual rhythm, and enough
+              structure to know what is happening tonight without reading the whole room.
+            </p>
+            <div class="hero-pills">
+              <span class="pill">Tonight is decided</span>
+              <span class="pill">2 Market-fresh pickups</span>
+              <span class="pill">3 ingredients to use soon</span>
+            </div>
+          </div>
+
+          <aside class="hero-side">
+            <article class="tonight-card" aria-labelledby="tonight-heading">
+              <span class="kicker">Tonight</span>
+              <h2 id="tonight-heading">Market steak salad</h2>
+              <p>
+                Fresh greens, warm sliced steak, and a sharp dressing. This is the hero dish of the week,
+                which is exactly why it deserves top billing.
+              </p>
+              <div class="tonight-meta">
+                <div>
+                  <strong>What matters</strong>
+                  Grab steak and greens fresh from the Market.
+                </div>
+                <div>
+                  <strong>Hands-on time</strong>
+                  About 20 minutes.
+                </div>
+                <div>
+                  <strong>Why tonight works</strong>
+                  Midweek morale with a little swagger.
+                </div>
+              </div>
+              <div class="actions">
+                <a class="button" href="https://www.google.com/search?q=market+steak+salad+recipe" target="_blank" rel="noreferrer">View recipe ↗</a>
+                <a class="button-secondary" href="#week-lineup">See the full week</a>
+              </div>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="overview" aria-label="Weekly overview">
+        <article class="overview-card">
+          <span>Menu status</span>
+          <strong>5 dinners locked in</strong>
+        </article>
+        <article class="overview-card">
+          <span>Most exciting night</span>
+          <strong>Wednesday, steak salad</strong>
+        </article>
+        <article class="overview-card">
+          <span>Use soon</span>
+          <strong>Chicken, yogurt, lemons</strong>
+        </article>
+        <article class="overview-card">
+          <span>Market rhythm</span>
+          <strong>Wednesday and Friday</strong>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <section class="section" aria-labelledby="featured-heading">
+          <div class="section-inner">
+            <div class="section-head">
+              <div>
+                <h2 id="featured-heading">Featured this week</h2>
+                <p>Lead with the most appealing meal, then let the rest of the week fall neatly into place.</p>
+              </div>
+            </div>
+
+            <article class="featured">
+              <div class="featured-content">
+                <div class="tag-row">
+                  <span class="tag market">Market fresh</span>
+                  <span class="tag ready">Featured meal</span>
+                </div>
+                <h3>Market steak salad</h3>
+                <p>
+                  A better family menu should have one meal that feels a little special. This one carries the
+                  week visually and emotionally, fresh greens, good steak, bright dressing, proper confidence.
+                </p>
+                <div class="featured-meta">
+                  <div>
+                    <strong>Best picked up fresh</strong>
+                    Steak, greens, herbs
+                  </div>
+                  <div>
+                    <strong>Prep feel</strong>
+                    Fast and sharp, not fussy
+                  </div>
+                  <div>
+                    <strong>Recipe lane</strong>
+                    Restaurant at home
+                  </div>
+                </div>
+                <div class="actions">
+                  <a class="button" href="https://www.instagram.com/thesaladlabofficial/reel/CvOMKj4JtIW/" target="_blank" rel="noreferrer">Instagram inspo ↗</a>
+                  <a class="button-secondary" href="https://www.google.com/search?q=market+steak+salad+recipe" target="_blank" rel="noreferrer">Recipe options ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <div class="subgrid" id="week-lineup">
+              <article class="day-row">
+                <div>
+                  <div class="day-label">Monday</div>
+                  <div class="day-badges">
+                    <span class="day-badge ready">Ready</span>
+                    <span class="day-badge use-soon">Use soon</span>
+                  </div>
+                </div>
+                <div>
+                  <h4>Lemon herb chicken with roasted carrots</h4>
+                  <p>Bright, orderly, and exactly the right use of the week’s more fragile ingredients.</p>
+                  <div class="day-meta">
+                    <div><strong>Need to know</strong>Chicken goes first because good habits are sexy.</div>
+                    <div><strong>Time</strong>15 minutes hands-on</div>
+                  </div>
+                </div>
+                <a class="tiny-link" href="https://www.google.com/search?q=lemon+herb+chicken+roasted+carrots+recipe" target="_blank" rel="noreferrer">Recipe ↗</a>
+              </article>
+
+              <article class="day-row">
+                <div>
+                  <div class="day-label">Tuesday</div>
+                  <div class="day-badges">
+                    <span class="day-badge leftovers">Pantry friendly</span>
+                  </div>
+                </div>
+                <div>
+                  <h4>Pasta night, dressed like a decision</h4>
+                  <p>Flexible enough to absorb odds and ends, polished enough not to feel like cleanup duty.</p>
+                  <div class="day-meta">
+                    <div><strong>Need to know</strong>Ideal for Parmesan, garlic, and whatever needs a home.</div>
+                    <div><strong>Time</strong>20 minutes</div>
+                  </div>
+                </div>
+                <a class="tiny-link" href="https://www.google.com/search?q=easy+pasta+night+recipe" target="_blank" rel="noreferrer">Recipe ↗</a>
+              </article>
+
+              <article class="day-row">
+                <div>
+                  <div class="day-label">Thursday</div>
+                  <div class="day-badges">
+                    <span class="day-badge leftovers">Waste saver</span>
+                  </div>
+                </div>
+                <div>
+                  <h4>Leftover bowls with no apologies</h4>
+                  <p>A strategic reset meal that keeps the fridge honest and Friday feeling fresh.</p>
+                  <div class="day-meta">
+                    <div><strong>Need to know</strong>Plate it like intent, not surrender.</div>
+                    <div><strong>Time</strong>10 minutes</div>
+                  </div>
+                </div>
+                <a class="tiny-link" href="https://www.google.com/search?q=leftover+grain+bowl+recipe" target="_blank" rel="noreferrer">Recipe ↗</a>
+              </article>
+
+              <article class="day-row">
+                <div>
+                  <div class="day-label">Friday</div>
+                  <div class="day-badges">
+                    <span class="day-badge market">Market fresh</span>
+                    <span class="day-badge ready">Quick finish</span>
+                  </div>
+                </div>
+                <div>
+                  <h4>Sheet pan salmon and asparagus</h4>
+                  <p>Clean, bright, and quietly elegant. An easy closer that still feels like standards were maintained.</p>
+                  <div class="day-meta">
+                    <div><strong>Need to know</strong>Buy asparagus and salmon close to cook day.</div>
+                    <div><strong>Time</strong>15 minutes hands-on</div>
+                  </div>
+                </div>
+                <a class="tiny-link" href="https://www.google.com/search?q=sheet+pan+salmon+asparagus+recipe" target="_blank" rel="noreferrer">Recipe ↗</a>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <aside class="sidebar">
+          <section class="mini-card">
+            <h3>Market run</h3>
+            <p>Short walk, high reward. These are worth buying fresh.</p>
+            <ul class="list">
+              <li>
+                <strong>Wednesday</strong>
+                <span>Steak, salad greens, herbs, something crisp for the dressing situation.</span>
+              </li>
+              <li>
+                <strong>Friday</strong>
+                <span>Salmon, asparagus, maybe another lemon if the week got citrus-happy.</span>
+              </li>
+            </ul>
+          </section>
+
+          <section class="mini-card">
+            <h3>Use soon</h3>
+            <p>The ingredients asking not to be forgotten.</p>
+            <ul class="list">
+              <li>
+                <strong>Chicken thighs</strong>
+                <span>Best used first, while the week still has discipline.</span>
+              </li>
+              <li>
+                <strong>Greek yogurt</strong>
+                <span>Can become breakfast, sauce, or last-minute culinary damage control.</span>
+              </li>
+              <li>
+                <strong>Lemons</strong>
+                <span>Useful nearly everywhere, but especially Monday and Friday.</span>
+              </li>
+            </ul>
+          </section>
+
+          <section class="mini-card">
+            <h3>What changed in this pass</h3>
+            <p>
+              Stronger hierarchy, a clear tonight moment, a featured meal, and a more legible weekly lineup.
+              This now behaves more like a product experience and less like a handsome collage.
+            </p>
+          </section>
+        </aside>
+      </section>
+
+      <p class="footer-note">Pass three, with actual hierarchy. Better UX, less decorative wandering.</p>
+    </main>
+  </body>
+</html>
