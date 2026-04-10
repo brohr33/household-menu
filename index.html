@@ -107,7 +107,7 @@
         margin-top: 16px;
         font-size: clamp(3.1rem, 7vw, 6.5rem);
         line-height: 0.92;
-        max-width: 8ch;
+        max-width: 9ch;
       }
 
       .lede {
@@ -191,7 +191,8 @@
       }
 
       .button,
-      .button-secondary {
+      .button-secondary,
+      .tiny-link {
         text-decoration: none;
         display: inline-flex;
         align-items: center;
@@ -208,7 +209,8 @@
         color: #2a1d12;
       }
 
-      .button-secondary {
+      .button-secondary,
+      .tiny-link {
         background: rgba(255, 248, 240, 0.08);
         border: 1px solid rgba(255, 248, 240, 0.12);
         color: #fff1e1;
@@ -279,7 +281,7 @@
 
       .featured {
         position: relative;
-        min-height: 420px;
+        min-height: 430px;
         overflow: hidden;
         border-radius: 30px;
         background:
@@ -333,20 +335,23 @@
         max-width: 10ch;
       }
 
-      .featured p {
+      .featured p,
+      .day-row p,
+      .mini-card p {
         margin: 0;
         color: #eadccc;
-        max-width: 48ch;
       }
 
-      .featured-meta {
+      .featured-meta,
+      .day-meta {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 10px;
       }
 
       .featured-meta div,
-      .day-meta div {
+      .day-meta div,
+      .shopping-columns > div {
         padding: 12px 14px;
         border-radius: 16px;
         background: rgba(255, 248, 240, 0.08);
@@ -354,7 +359,8 @@
       }
 
       .featured-meta strong,
-      .day-meta strong {
+      .day-meta strong,
+      .shopping-columns strong {
         display: block;
         font-size: 0.72rem;
         text-transform: uppercase;
@@ -392,32 +398,17 @@
         margin-bottom: 6px;
       }
 
-      .day-row p {
-        margin: 0;
+      .day-row p,
+      .list span,
+      .muted {
         color: var(--muted);
       }
 
       .day-meta {
-        display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
         margin-top: 12px;
         color: #e4d4c3;
         font-size: 0.88rem;
-      }
-
-      .tiny-link {
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        min-height: 42px;
-        padding: 0 14px;
-        border-radius: 999px;
-        background: rgba(255, 248, 240, 0.08);
-        border: 1px solid rgba(255, 248, 240, 0.12);
-        color: #fff2e1;
-        font-weight: 700;
       }
 
       .sidebar {
@@ -429,11 +420,6 @@
         padding: 22px;
         border-radius: 24px;
         background: linear-gradient(180deg, rgba(32, 25, 20, 0.92), rgba(20, 16, 13, 0.98));
-      }
-
-      .mini-card p {
-        margin: 8px 0 0;
-        color: var(--muted);
       }
 
       .list {
@@ -456,9 +442,21 @@
         margin-bottom: 4px;
       }
 
-      .list span {
-        color: var(--muted);
-        font-size: 0.92rem;
+      .shopping-columns {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .shopping-columns ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .shopping-columns li {
+        margin: 6px 0;
+        color: #eadccc;
       }
 
       .footer-note {
@@ -473,7 +471,8 @@
         .content-grid,
         .overview,
         .featured-meta,
-        .day-meta {
+        .day-meta,
+        .shopping-columns {
           grid-template-columns: 1fr;
         }
 
@@ -498,44 +497,43 @@
       <section class="hero" aria-labelledby="page-title">
         <div class="hero-inner">
           <div>
-            <div class="eyebrow">👨‍🍳 Carl Claw, front of house for dinner</div>
-            <h1 id="page-title">The week, plated a little better</h1>
+            <div class="eyebrow">👨‍🍳 Carl Claw, weekly family menu service</div>
+            <h1 id="page-title">Week of April 13, plated for review</h1>
             <p class="lede">
-              A family-facing weekly menu with a calmer hierarchy, a more elevated visual rhythm, and enough
-              structure to know what is happening tonight without reading the whole room.
+              Five dinners for two, protein-forward, fresh, and built around Market proteins with Kroger doing the support work.
+              This is the family-facing review copy, polished enough to share before we buy a thing.
             </p>
             <div class="hero-pills">
-              <span class="pill">Tonight is decided</span>
-              <span class="pill">2 Market-fresh pickups</span>
-              <span class="pill">3 ingredients to use soon</span>
+              <span class="pill">5 dinners proposed</span>
+              <span class="pill">All proteins from the Market</span>
+              <span class="pill">Kroger handles support items</span>
             </div>
           </div>
 
           <aside class="hero-side">
             <article class="tonight-card" aria-labelledby="tonight-heading">
-              <span class="kicker">Tonight</span>
-              <h2 id="tonight-heading">Market steak salad</h2>
+              <span class="kicker">Featured dinner</span>
+              <h2 id="tonight-heading">Steak salad with homemade vinaigrette</h2>
               <p>
-                Fresh greens, warm sliced steak, and a sharp dressing. This is the hero dish of the week,
-                which is exactly why it deserves top billing.
+                This is the swagger meal of the week, fresh steak, crisp greens, and a bright dressing. Good enough to anchor the menu and easy enough not to ruin a Wednesday.
               </p>
               <div class="tonight-meta">
                 <div>
-                  <strong>What matters</strong>
-                  Grab steak and greens fresh from the Market.
+                  <strong>Market pickup</strong>
+                  Steak, and maybe herbs if you want the freshest possible finish.
                 </div>
                 <div>
-                  <strong>Hands-on time</strong>
-                  About 20 minutes.
+                  <strong>Kroger support</strong>
+                  Greens, avocado, and any vinaigrette odds and ends.
                 </div>
                 <div>
-                  <strong>Why tonight works</strong>
-                  Midweek morale with a little swagger.
+                  <strong>Why it made the cut</strong>
+                  Protein-forward, fresh, and slightly smug in the right way.
                 </div>
               </div>
               <div class="actions">
-                <a class="button" href="https://www.google.com/search?q=market+steak+salad+recipe" target="_blank" rel="noreferrer">View recipe ↗</a>
-                <a class="button-secondary" href="#week-lineup">See the full week</a>
+                <a class="button" href="https://www.theendlessmeal.com/best-steak-salad/" target="_blank" rel="noreferrer">View recipe ↗</a>
+                <a class="button-secondary" href="#week-lineup">See full week</a>
               </div>
             </article>
           </aside>
@@ -544,20 +542,20 @@
 
       <section class="overview" aria-label="Weekly overview">
         <article class="overview-card">
-          <span>Menu status</span>
-          <strong>5 dinners locked in</strong>
+          <span>Planning target</span>
+          <strong>5 dinners for 2</strong>
         </article>
         <article class="overview-card">
-          <span>Most exciting night</span>
-          <strong>Wednesday, steak salad</strong>
+          <span>Most on-brand meal</span>
+          <strong>Friday salmon and asparagus</strong>
         </article>
         <article class="overview-card">
-          <span>Use soon</span>
-          <strong>Chicken, yogurt, lemons</strong>
+          <span>Already on hand</span>
+          <strong>Lemons, yogurt, couscous, oils, spices</strong>
         </article>
         <article class="overview-card">
-          <span>Market rhythm</span>
-          <strong>Wednesday and Friday</strong>
+          <span>Needs approval</span>
+          <strong>Everything before carting</strong>
         </article>
       </section>
 
@@ -566,39 +564,37 @@
           <div class="section-inner">
             <div class="section-head">
               <div>
-                <h2 id="featured-heading">Featured this week</h2>
-                <p>Lead with the most appealing meal, then let the rest of the week fall neatly into place.</p>
+                <h2 id="featured-heading">This week’s lineup</h2>
+                <p>Real recipes, actual sourcing logic, and enough polish to put in front of the family.</p>
               </div>
             </div>
 
             <article class="featured">
               <div class="featured-content">
                 <div class="tag-row">
-                  <span class="tag market">Market fresh</span>
+                  <span class="tag market">Market protein</span>
                   <span class="tag ready">Featured meal</span>
                 </div>
-                <h3>Market steak salad</h3>
+                <h3>Steak salad with homemade vinaigrette</h3>
                 <p>
-                  A better family menu should have one meal that feels a little special. This one carries the
-                  week visually and emotionally, fresh greens, good steak, bright dressing, proper confidence.
+                  A better weekly menu should have one meal that feels a little special. This one carries the week beautifully without asking for ridiculous effort.
                 </p>
                 <div class="featured-meta">
                   <div>
-                    <strong>Best picked up fresh</strong>
-                    Steak, greens, herbs
+                    <strong>Market</strong>
+                    Steak, optional fresh herbs
                   </div>
                   <div>
-                    <strong>Prep feel</strong>
-                    Fast and sharp, not fussy
+                    <strong>Kroger</strong>
+                    Greens, avocado, vinaigrette support
                   </div>
                   <div>
-                    <strong>Recipe lane</strong>
-                    Restaurant at home
+                    <strong>Recipe</strong>
+                    Fresh, bright, and protein-heavy
                   </div>
                 </div>
                 <div class="actions">
-                  <a class="button" href="https://www.instagram.com/thesaladlabofficial/reel/CvOMKj4JtIW/" target="_blank" rel="noreferrer">Instagram inspo ↗</a>
-                  <a class="button-secondary" href="https://www.google.com/search?q=market+steak+salad+recipe" target="_blank" rel="noreferrer">Recipe options ↗</a>
+                  <a class="button" href="https://www.theendlessmeal.com/best-steak-salad/" target="_blank" rel="noreferrer">Recipe ↗</a>
                 </div>
               </div>
             </article>
@@ -608,74 +604,95 @@
                 <div>
                   <div class="day-label">Monday</div>
                   <div class="day-badges">
-                    <span class="day-badge ready">Ready</span>
-                    <span class="day-badge use-soon">Use soon</span>
+                    <span class="day-badge ready">Uses lemons</span>
+                    <span class="day-badge market">Market chicken</span>
                   </div>
                 </div>
                 <div>
-                  <h4>Lemon herb chicken with roasted carrots</h4>
-                  <p>Bright, orderly, and exactly the right use of the week’s more fragile ingredients.</p>
+                  <h4>Greek-style roasted lemon chicken with potatoes and carrots</h4>
+                  <p>Practical, fresh, and a good way to start the week without getting theatrical.</p>
                   <div class="day-meta">
-                    <div><strong>Need to know</strong>Chicken goes first because good habits are sexy.</div>
-                    <div><strong>Time</strong>15 minutes hands-on</div>
+                    <div><strong>On hand</strong>Lemons, olive oil, salt, pepper, spices</div>
+                    <div><strong>Recipe</strong><a href="https://www.olivetomato.com/greek-style-roasted-lemon-and-garlic-chicken-with-potatoes-and-carrots/" target="_blank" rel="noreferrer">Olive Tomato ↗</a></div>
                   </div>
                 </div>
-                <a class="tiny-link" href="https://www.google.com/search?q=lemon+herb+chicken+roasted+carrots+recipe" target="_blank" rel="noreferrer">Recipe ↗</a>
+                <a class="tiny-link" href="https://www.olivetomato.com/greek-style-roasted-lemon-and-garlic-chicken-with-potatoes-and-carrots/" target="_blank" rel="noreferrer">Open recipe ↗</a>
               </article>
 
               <article class="day-row">
                 <div>
                   <div class="day-label">Tuesday</div>
                   <div class="day-badges">
-                    <span class="day-badge leftovers">Pantry friendly</span>
+                    <span class="day-badge use-soon">Uses yogurt</span>
+                    <span class="day-badge ready">On-hand couscous</span>
                   </div>
                 </div>
                 <div>
-                  <h4>Pasta night, dressed like a decision</h4>
-                  <p>Flexible enough to absorb odds and ends, polished enough not to feel like cleanup duty.</p>
+                  <h4>Greek chicken meatballs with yogurt sauce and couscous</h4>
+                  <p>Weeknight friendly, healthy, and makes smart use of what is already in the fridge and pantry.</p>
                   <div class="day-meta">
-                    <div><strong>Need to know</strong>Ideal for Parmesan, garlic, and whatever needs a home.</div>
-                    <div><strong>Time</strong>20 minutes</div>
+                    <div><strong>On hand</strong>Greek yogurt, pearl couscous, lemons, oils, spices</div>
+                    <div><strong>Recipe</strong><a href="https://allthehealthythings.com/greek-chicken-meatballs/" target="_blank" rel="noreferrer">All the Healthy Things ↗</a></div>
                   </div>
                 </div>
-                <a class="tiny-link" href="https://www.google.com/search?q=easy+pasta+night+recipe" target="_blank" rel="noreferrer">Recipe ↗</a>
+                <a class="tiny-link" href="https://allthehealthythings.com/greek-chicken-meatballs/" target="_blank" rel="noreferrer">Open recipe ↗</a>
+              </article>
+
+              <article class="day-row">
+                <div>
+                  <div class="day-label">Wednesday</div>
+                  <div class="day-badges">
+                    <span class="day-badge market">Market steak</span>
+                    <span class="day-badge ready">Featured</span>
+                  </div>
+                </div>
+                <div>
+                  <h4>Steak salad with homemade vinaigrette</h4>
+                  <p>The sharp, fresh centerpiece of the week, with enough flair to feel like a proper choice.</p>
+                  <div class="day-meta">
+                    <div><strong>On hand</strong>Olive oil, lemons or limes, salt, pepper</div>
+                    <div><strong>Recipe</strong><a href="https://www.theendlessmeal.com/best-steak-salad/" target="_blank" rel="noreferrer">The Endless Meal ↗</a></div>
+                  </div>
+                </div>
+                <a class="tiny-link" href="https://www.theendlessmeal.com/best-steak-salad/" target="_blank" rel="noreferrer">Open recipe ↗</a>
               </article>
 
               <article class="day-row">
                 <div>
                   <div class="day-label">Thursday</div>
                   <div class="day-badges">
-                    <span class="day-badge leftovers">Waste saver</span>
+                    <span class="day-badge market">Market pork</span>
+                    <span class="day-badge ready">Lean protein</span>
                   </div>
                 </div>
                 <div>
-                  <h4>Leftover bowls with no apologies</h4>
-                  <p>A strategic reset meal that keeps the fridge honest and Friday feeling fresh.</p>
+                  <h4>Sheet pan pork tenderloin with vegetables</h4>
+                  <p>Disciplined, healthy, and useful in the exact way a Thursday dinner should be.</p>
                   <div class="day-meta">
-                    <div><strong>Need to know</strong>Plate it like intent, not surrender.</div>
-                    <div><strong>Time</strong>10 minutes</div>
+                    <div><strong>On hand</strong>Olive oil or avocado oil, salt, pepper, spices</div>
+                    <div><strong>Recipe</strong><a href="https://therealfooddietitians.com/sheet-pan-pork-tenderloin/" target="_blank" rel="noreferrer">The Real Food Dietitians ↗</a></div>
                   </div>
                 </div>
-                <a class="tiny-link" href="https://www.google.com/search?q=leftover+grain+bowl+recipe" target="_blank" rel="noreferrer">Recipe ↗</a>
+                <a class="tiny-link" href="https://therealfooddietitians.com/sheet-pan-pork-tenderloin/" target="_blank" rel="noreferrer">Open recipe ↗</a>
               </article>
 
               <article class="day-row">
                 <div>
                   <div class="day-label">Friday</div>
                   <div class="day-badges">
-                    <span class="day-badge market">Market fresh</span>
-                    <span class="day-badge ready">Quick finish</span>
+                    <span class="day-badge market">Market fish</span>
+                    <span class="day-badge ready">Fast finish</span>
                   </div>
                 </div>
                 <div>
                   <h4>Sheet pan salmon and asparagus</h4>
-                  <p>Clean, bright, and quietly elegant. An easy closer that still feels like standards were maintained.</p>
+                  <p>Clean, bright, and exactly the kind of Friday dinner that makes the week feel more together than it probably was.</p>
                   <div class="day-meta">
-                    <div><strong>Need to know</strong>Buy asparagus and salmon close to cook day.</div>
-                    <div><strong>Time</strong>15 minutes hands-on</div>
+                    <div><strong>On hand</strong>Lemons, olive oil, salt, pepper</div>
+                    <div><strong>Recipe</strong><a href="https://natashaskitchen.com/one-pan-salmon-asparagus-recipe-video/" target="_blank" rel="noreferrer">Natasha’s Kitchen ↗</a></div>
                   </div>
                 </div>
-                <a class="tiny-link" href="https://www.google.com/search?q=sheet+pan+salmon+asparagus+recipe" target="_blank" rel="noreferrer">Recipe ↗</a>
+                <a class="tiny-link" href="https://natashaskitchen.com/one-pan-salmon-asparagus-recipe-video/" target="_blank" rel="noreferrer">Open recipe ↗</a>
               </article>
             </div>
           </div>
@@ -683,50 +700,56 @@
 
         <aside class="sidebar">
           <section class="mini-card">
-            <h3>Market run</h3>
-            <p>Short walk, high reward. These are worth buying fresh.</p>
+            <h3>Market list</h3>
+            <p>Fresh proteins belong to the short walk, not the long delivery chain.</p>
             <ul class="list">
-              <li>
-                <strong>Wednesday</strong>
-                <span>Steak, salad greens, herbs, something crisp for the dressing situation.</span>
-              </li>
-              <li>
-                <strong>Friday</strong>
-                <span>Salmon, asparagus, maybe another lemon if the week got citrus-happy.</span>
-              </li>
+              <li><strong>Chicken</strong><span>For Monday roasted lemon chicken</span></li>
+              <li><strong>Ground chicken</strong><span>For Tuesday meatballs</span></li>
+              <li><strong>Steak</strong><span>For Wednesday salad</span></li>
+              <li><strong>Pork tenderloin</strong><span>For Thursday sheet pan dinner</span></li>
+              <li><strong>Salmon</strong><span>For Friday</span></li>
             </ul>
           </section>
 
           <section class="mini-card">
-            <h3>Use soon</h3>
-            <p>The ingredients asking not to be forgotten.</p>
-            <ul class="list">
-              <li>
-                <strong>Chicken thighs</strong>
-                <span>Best used first, while the week still has discipline.</span>
-              </li>
-              <li>
-                <strong>Greek yogurt</strong>
-                <span>Can become breakfast, sauce, or last-minute culinary damage control.</span>
-              </li>
-              <li>
-                <strong>Lemons</strong>
-                <span>Useful nearly everywhere, but especially Monday and Friday.</span>
-              </li>
-            </ul>
+            <h3>Kroger support</h3>
+            <p>Support ingredients and grocery basics, all still pending your approval.</p>
+            <div class="shopping-columns">
+              <div>
+                <strong>Early week</strong>
+                <ul>
+                  <li>Potatoes</li>
+                  <li>Carrots</li>
+                  <li>Garlic</li>
+                  <li>Oregano if needed</li>
+                </ul>
+              </div>
+              <div>
+                <strong>Mid to late week</strong>
+                <ul>
+                  <li>Red onion or shallot</li>
+                  <li>Cucumber</li>
+                  <li>Salad greens</li>
+                  <li>Avocado</li>
+                  <li>Roasting vegetables</li>
+                  <li>Asparagus if not from Market</li>
+                </ul>
+              </div>
+            </div>
           </section>
 
           <section class="mini-card">
-            <h3>What changed in this pass</h3>
-            <p>
-              Stronger hierarchy, a clear tonight moment, a featured meal, and a more legible weekly lineup.
-              This now behaves more like a product experience and less like a handsome collage.
-            </p>
+            <h3>Already on hand</h3>
+            <p class="muted">Useful ingredients already doing their part.</p>
+            <ul class="list">
+              <li><strong>Fridge</strong><span>Eggs, almond milk, Fage 2% Greek yogurt, 6 lemons, 2 limes</span></li>
+              <li><strong>Pantry</strong><span>Pearl couscous, rice, cereals, granola, oils, salt, pepper, standard spices</span></li>
+            </ul>
           </section>
         </aside>
       </section>
 
-      <p class="footer-note">Pass three, with actual hierarchy. Better UX, less decorative wandering.</p>
+      <p class="footer-note">Published for family review. Cart actions still wait for Brent’s approval, like civilized people.</p>
     </main>
   </body>
 </html>
